@@ -600,6 +600,18 @@ describe('TodoMVC', function () {
 
       cy.get('@todos').should('have.length', 3)
     })
+    it('should allow me to display completed items', function () {
+      cy.get('@todos')
+      .eq(1)
+      .find('.toggle')
+      .check()
+
+      cy.get('.filters')
+      .contains('Completed')
+      .click()
+
+      cy.get('@todos').should('have.length', 1)
+    })
 
     it('should highlight the currently applied filter', function () {
       // using a within here which will automatically scope
